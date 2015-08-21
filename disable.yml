@@ -1,0 +1,7 @@
+---
+- hosts: nodes
+  tasks:
+  - include_vars: conf.yml
+  - name: remove crontab
+    cron: name={{ item.script }} state=absent
+    with_items: "{{ jobs }}"

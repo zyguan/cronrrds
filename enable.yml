@@ -1,0 +1,15 @@
+---
+- hosts: nodes
+  tasks:
+  - include_vars: conf.yml
+  - name: install rrdtool
+    apt: name=rrdtool
+    become: yes
+    become_method: sudo
+  - name: copy script
+    copy: src={{ item.script }} dest={{ install_dir }}/
+    with_items: "{{ jobs }}"
+  - name: add crontab
+    cron: name={{ item.script }} minute={{ item.minute }}
+          job="bash {{install_dir}}/{{item.script}}"
+    with_items: "{{ jobs }}"

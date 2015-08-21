@@ -1,0 +1,9 @@
+---
+- hosts: nodes
+  tasks:
+  - include_vars: conf.yml
+  - name: fetch rrds
+    fetch: src="{{ install_dir }}/{{ item.script | regex_replace('\.sh$', '') }}.rrd" flat=yes validate_checksum=no
+           dest="{{ fetch_dir }}/{{ item.script | regex_replace('\.sh$', '') }}.{{ ansible_hostname }}.rrd"
+    with_items: "{{ jobs }}"
+

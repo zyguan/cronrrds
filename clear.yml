@@ -1,0 +1,8 @@
+---
+- include: disable.yml
+- hosts: nodes
+  tasks:
+  - include_vars: conf.yml
+  - name: remove install_dir
+    file: path={{ install_dir }} state=absent
+

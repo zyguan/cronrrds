@@ -1,1 +1,0 @@
-*/5 * * * * bash <dir>/cpu_temp.sh
