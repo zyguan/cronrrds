@@ -6,9 +6,8 @@
     apt: name=rrdtool
     become: yes
     become_method: sudo
-  - name: copy script
-    copy: src={{ item.script }} dest={{ install_dir }}/
-    with_items: "{{ jobs }}"
+  - name: copy scripts
+    copy: src=scripts/ dest={{ install_dir }}/
   - name: add crontab
     cron: name={{ item.script }} minute={{ item.minute }}
           job="bash {{install_dir}}/{{item.script}}"

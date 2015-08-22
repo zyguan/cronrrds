@@ -1,8 +1,8 @@
 install_dir: "{{ansible_user_dir}}/.cronrrds"
 fetch_dir: "/tmp/cronrrds"
 jobs:
-- script: 2s_net_bytes.sh
+- script: 02s_net_bytes.sh
   minute: "*"
-- script: 5m_cpu_temp.sh
+- script: 05m_cpu_temp.sh
   minute: "*/5"
 
